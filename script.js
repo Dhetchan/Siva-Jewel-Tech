@@ -225,16 +225,17 @@ function closeLightbox() {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
 /* ════════════════════════════════════════
-   CONTACT FORM — Web3Forms Integration
-   Replace YOUR_WEB3FORMS_ACCESS_KEY in index.html with your real key
-   Get your free key at: https://web3forms.com
+   CONTACT FORM — opens the visitor's email app
+   Builds a mailto: link pre-filled with everything they typed, so the
+   enquiry lands in their own Sent folder and replies come straight back
+   to them. No server or third-party form service involved.
 ════════════════════════════════════════ */
-async function handleSubmit(e) {
+const SIVA_EMAIL = 'sivas0115@gmail.com';
+
+function handleSubmit(e) {
   e.preventDefault();
 
-  const btn      = document.getElementById('cf-submit');
-  const feedback = document.getElementById('cf-feedback');
-  const form     = document.getElementById('contactForm');
+  const btn = document.getElementById('cf-submit');
 
   /* ── client-side validation ── */
   const name    = document.getElementById('cf-name').value.trim();
@@ -263,46 +264,47 @@ async function handleSubmit(e) {
     return;
   }
 
-  /* ── loading state — disable button, show spinner text ── */
-  btn.disabled    = true;
-  btn.textContent = 'Sending…';
-  btn.style.opacity = '0.7';
+  const topic = document.getElementById('cf-subject').value.trim();
+
+  /* ── build the pre-filled email ── */
+  const subject = topic
+    ? `Jewellery Enquiry — ${topic}`
+    : `Jewellery Enquiry from ${name}`;
+
+  const body = [
+    `Name             : ${name}`,
+    `Phone / WhatsApp : ${phone || '—'}`,
+    `Email            : ${email || '—'}`,
+    `Subject          : ${topic || '—'}`,
+    '',
+    'Enquiry:',
+    message,
+    '',
+    '— Sent from the SIVA Gold & Silver website',
+  ].join('\r\n');
+
+  const mailto = `mailto:${SIVA_EMAIL}`
+    + `?subject=${encodeURIComponent(subject)}`
+    + `&body=${encodeURIComponent(body)}`;
+
   hideFeedback();
 
-  try {
-    const formData = new FormData(form);
+  /* The form data stays put — if no mail app is configured, the visitor
+     can still copy it or fall back to WhatsApp. */
+  showFeedback(
+    'Opening your email app with this enquiry ready to send — just press Send. '
+    + `If nothing opens, email us at ${SIVA_EMAIL} or use the WhatsApp button.`,
+    true
+  );
 
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body:   formData,
-      headers: { 'Accept': 'application/json' }
-    });
+  btn.disabled = true;
+  btn.textContent = 'Opening email…';
+  window.location.href = mailto;
 
-    const result = await response.json();
-
-    if (response.ok && result.success) {
-      /* ── success ── */
-      showFeedback('✓  Your enquiry has been sent! We will get back to you within 24 hours.', true);
-      form.reset();
-    } else {
-      /* ── server-side error ── */
-      showFeedback(
-        result.message || 'Something went wrong. Please try again or WhatsApp us directly.',
-        false
-      );
-    }
-  } catch (err) {
-    /* ── network error ── */
-    showFeedback(
-      'Unable to send your message. Please check your connection and try again.',
-      false
-    );
-  } finally {
-    /* ── always restore button ── */
-    btn.disabled    = false;
+  setTimeout(() => {
+    btn.disabled = false;
     btn.textContent = 'Send Enquiry';
-    btn.style.opacity = '';
-  }
+  }, 2500);
 }
 
 /* helpers — only style the feedback div, touch nothing else */

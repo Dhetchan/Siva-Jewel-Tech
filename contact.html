@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0B1628">
+<title>Contact – SIVA Gold & Silver</title>
+<meta name="description" content="Contact SIVA Gold &amp; Silver Molding Works, Nehru Street, Sankarankovil. Call +91 99444 50084, WhatsApp us, or send a custom design enquiry.">
+<link rel="icon" href="assets/logo/favicon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/logo/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;900&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ── PAGE HERO ── */
+.page-hero {
+  min-height: 44vh;
+  padding: calc(var(--nav-h) + 60px) 24px 52px;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 55%, #0D1E3A 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; position: relative; overflow: hidden;
+}
+.page-hero::before {
+  content: ''; position: absolute; top: -80px; right: -80px;
+  width: 260px; height: 260px;
+  border: 1px solid rgba(201,168,76,.1); border-radius: 50%; pointer-events: none;
+}
+.page-hero-inner { position: relative; z-index: 2; animation: fadeUp .7s ease both; }
+.breadcrumb {
+  font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .22em;
+  color: var(--gold-dark); text-transform: uppercase; margin-bottom: 14px;
+}
+.breadcrumb a { color: var(--gold-dark); }
+.page-hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.2rem, 8vw, 4.5rem);
+  font-weight: 900; letter-spacing: .06em;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.page-hero p {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: clamp(.9rem, 3vw, 1.1rem);
+  color: var(--text-light); margin-top: 12px; letter-spacing: .08em;
+}
+
+/* ── CONTACT MAIN GRID ── */
+.contact-page-section {
+  padding: 64px 20px;
+  background: var(--navy-mid);
+}
+.contact-page-grid {
+  display: flex; flex-direction: column; gap: 40px;
+  max-width: 1060px; margin: 0 auto;
+}
+
+/* ── FORM SIDE ── */
+.contact-form-panel {
+  flex: 1;
+}
+.contact-form-panel .section-label { text-align: left; margin-bottom: 10px; }
+.contact-form-panel h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 300; color: var(--white); line-height: 1.2;
+  margin-bottom: 6px;
+}
+.contact-form-panel h2 em { font-style: italic; color: var(--gold); }
+.contact-form-panel .gold-rule { margin-left: 0; margin-bottom: 28px; }
+.contact-form-panel .contact-body {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: .98rem; color: var(--text-light); line-height: 1.7; margin-bottom: 28px;
+}
+
+/* form */
+.full-contact-form { display: flex; flex-direction: column; gap: 14px; }
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.form-input, .form-textarea, .form-select {
+  width: 100%; background: rgba(11,22,40,.5);
+  border: 1px solid rgba(201,168,76,.22); color: var(--white);
+  font-family: 'Lato', sans-serif; font-size: .88rem;
+  padding: 14px 16px; outline: none; transition: border-color .3s;
+  -webkit-appearance: none; appearance: none;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(200,192,176,.32); }
+.form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--gold); }
+.form-select option { background: var(--navy-mid); color: var(--white); }
+.form-textarea { resize: none; height: 130px; }
+.form-label {
+  font-family: 'Cinzel', serif; font-size: .52rem; letter-spacing: .2em;
+  color: var(--gold-dark); text-transform: uppercase;
+  display: block; margin-bottom: 6px;
+}
+.form-group { display: flex; flex-direction: column; }
+.btn-submit-full {
+  width: 100%; background: var(--gold); color: var(--navy);
+  font-family: 'Cinzel', serif; font-size: .7rem;
+  letter-spacing: .22em; text-transform: uppercase; padding: 16px;
+  transition: background .25s, transform .15s; cursor: pointer;
+  border: none;
+}
+.btn-submit-full:hover  { background: var(--gold-light); }
+.btn-submit-full:active { transform: scale(.98); }
+
+/* success state */
+.form-success {
+  display: none; text-align: center; padding: 40px 20px;
+  border: 1px solid rgba(201,168,76,.3);
+  background: rgba(201,168,76,.05);
+}
+.form-success .success-icon { font-size: 3rem; margin-bottom: 14px; }
+.form-success h3 {
+  font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: .15em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 10px;
+}
+.form-success p { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--text-light); font-size: .98rem; }
+
+/* ── INFO SIDE ── */
+.contact-info-panel { flex: 0 0 auto; }
+.info-card {
+  background: rgba(11,22,40,.5);
+  border: 1px solid rgba(201,168,76,.15);
+  padding: 28px 22px;
+  margin-bottom: 14px;
+  display: flex; gap: 16px; align-items: flex-start;
+  transition: border-color .3s;
+}
+.info-card:hover { border-color: rgba(201,168,76,.35); }
+.info-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+.info-label {
+  font-family: 'Cinzel', serif; font-size: .54rem; letter-spacing: .2em;
+  color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 4px;
+}
+.info-value {
+  font-size: .88rem; color: var(--white); line-height: 1.6;
+}
+.info-value a { color: var(--white); transition: color .2s; }
+.info-value a:hover { color: var(--gold); }
+.info-value small { display: block; font-size: .75rem; color: var(--text-light); margin-top: 2px; }
+
+/* hours table */
+.hours-table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.hours-table tr td { font-size: .82rem; padding: 4px 0; color: var(--white); }
+.hours-table tr td:last-child { text-align: right; color: var(--text-light); }
+.hours-table tr.today td { color: var(--gold); font-weight: 400; }
+
+/* social row */
+.contact-socials {
+  display: flex; gap: 10px; margin-top: 14px;
+}
+.contact-social-btn {
+  flex: 1; padding: 12px 8px; text-align: center;
+  border: 1px solid rgba(201,168,76,.25);
+  font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .14em;
+  color: var(--gold); text-transform: uppercase;
+  transition: background .2s, color .2s; cursor: pointer;
+}
+.contact-social-btn:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+/* ── MAP SECTION ── */
+.map-section { background: #0A1520; padding: 0; }
+.map-header { padding: 48px 20px 28px; text-align: center; }
+.map-wrap {
+  width: 100%; height: 300px;
+  background: var(--navy-mid);
+  border-top: 1px solid rgba(201,168,76,.12);
+  position: relative; overflow: hidden;
+}
+.map-wrap iframe {
+  width: 100%; height: 100%; border: none; filter: grayscale(30%) invert(5%);
+}
+.map-overlay-btn {
+  /* left-aligned so it never sits under the fixed WhatsApp button */
+  position: absolute; bottom: 16px; left: 16px;
+  background: var(--gold); color: var(--navy);
+  font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .16em;
+  text-transform: uppercase; padding: 10px 20px;
+  display: flex; align-items: center; gap: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.4);
+  transition: background .2s;
+}
+.map-overlay-btn:hover { background: var(--gold-light); }
+
+/* ── FAQ ── */
+.faq-section { padding: 64px 20px; background: var(--navy-mid); }
+.faq-list { max-width: 720px; margin: 36px auto 0; }
+.faq-item { border-bottom: 1px solid rgba(201,168,76,.12); }
+.faq-question {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 4px; background: none;
+  font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .12em;
+  color: var(--white); text-transform: uppercase; text-align: left; cursor: pointer;
+  transition: color .2s;
+}
+.faq-question:hover { color: var(--gold); }
+.faq-question .faq-arrow { font-size: .8rem; color: var(--gold); transition: transform .3s; flex-shrink: 0; margin-left: 12px; }
+.faq-question.open { color: var(--gold); }
+.faq-question.open .faq-arrow { transform: rotate(180deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
+  font-size: .88rem; line-height: 1.85; color: var(--text-light);
+  padding: 0 4px;
+}
+.faq-answer.open { max-height: 300px; padding: 0 4px 20px; }
+
+/* ── WHATSAPP DIRECT ── */
+.wa-section {
+  background: #075E54;
+  padding: 48px 24px; text-align: center;
+}
+.wa-section h2 {
+  font-family: 'Cinzel', serif; font-size: clamp(1.2rem, 4vw, 1.8rem);
+  color: #fff; letter-spacing: .06em; margin-bottom: 8px;
+}
+.wa-section p { font-family: 'Cormorant Garamond', serif; font-style: italic; color: rgba(255,255,255,.75); margin-bottom: 24px; font-size: 1rem; }
+.btn-wa-big {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #25D366; color: #fff;
+  font-family: 'Cinzel', serif; font-size: .72rem; letter-spacing: .18em;
+  text-transform: uppercase; padding: 15px 36px;
+  border-radius: 2px; transition: background .2s;
+}
+.btn-wa-big:hover { background: #1ebe5d; }
+.btn-wa-big span { font-size: 1.3rem; }
+
+/* ── REVEAL & KEYFRAMES ── */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+
+/* ── RESPONSIVE ── */
+@media(min-width:640px){
+  .contact-page-section { padding: 80px 32px; }
+  .map-wrap { height: 380px; }
+  .faq-section { padding: 80px 32px; }
+}
+@media(min-width:1024px){
+  :root { --nav-h: 68px; }
+  nav { padding: 0 60px; }
+  .hamburger { display: none; }
+  .nav-links { display: flex; gap: 38px; list-style: none; }
+  .nav-links a { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.16em; color:var(--text-light); text-transform:uppercase; transition:color .3s; }
+  .nav-links a:hover { color: var(--gold); }
+  .contact-page-section { padding: 100px 60px; }
+  .contact-page-grid { flex-direction: row; gap: 60px; align-items: flex-start; }
+  .contact-info-panel { flex: 0 0 320px; }
+  .form-row-2 { grid-template-columns: 1fr 1fr; }
+  .map-wrap { height: 440px; }
+  .faq-section { padding: 100px 60px; }
+  .map-header { padding: 60px 60px 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="nav-logo-img">
+    <span>SIVA<small>Gold &amp; Silver</small></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" style="color:var(--gold)">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html"       onclick="closeMenu()">Home</a>
+  <a href="collections.html" onclick="closeMenu()">Collections</a>
+  <a href="gallery.html"     onclick="closeMenu()">Gallery</a>
+  <a href="about.html"       onclick="closeMenu()">About</a>
+  <a href="contact.html"     onclick="closeMenu()">Contact</a>
+</div>
+
+
+<a href="https://wa.me/919944450084"
+   class="wa-fab"
+   target="_blank" rel="noopener"
+   aria-label="Chat with us on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+</a>
+
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; <span style="color:var(--text-light)">Contact</span></div>
+    <h1>Get in <em style="-webkit-text-fill-color:transparent;background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));-webkit-background-clip:text;background-clip:text;">Touch</em></h1>
+    <p>We'd love to hear from you — every desire deserves to be worn</p>
+  </div>
+</div>
+
+<!-- ══ CONTACT MAIN ══ -->
+<section class="contact-page-section">
+  <div class="contact-page-grid">
+
+    <!-- LEFT: FORM -->
+    <div class="contact-form-panel reveal">
+      <span class="section-label">Send an Enquiry</span>
+      <h2>Commission Your <em>Dream Piece</em></h2>
+      <div class="gold-rule"></div>
+      <p class="contact-body" style="margin-top:18px">
+        Tell us your vision and our master craftsmen will bring it to life.<br>
+        Fill in the form and we'll get back to you within 24 hours.
+      </p>
+
+      <!-- FORM -->
+      <form class="full-contact-form" id="contactForm" onsubmit="submitForm(event)" novalidate>
+
+        <!-- Web3Forms — replace YOUR_WEB3FORMS_ACCESS_KEY with your key from web3forms.com -->
+        <input type="hidden" name="access_key"  value="YOUR_WEB3FORMS_ACCESS_KEY">
+        <input type="hidden" name="subject"     value="New Jewellery Enquiry — SIVA Gold & Silver">
+        <input type="hidden" name="from_name"   value="SIVA Gold & Silver Website">
+        <!-- Honeypot spam protection -->
+        <input type="text"   name="botcheck"    style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Your Name *</label>
+            <input class="form-input" type="text" id="fname" name="name" placeholder="e.g. Priya Lakshmi" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone / WhatsApp *</label>
+            <input class="form-input" type="tel" id="fphone" name="phone" placeholder="+91 99999 00000" autocomplete="tel" inputmode="tel" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" id="femail" name="email" placeholder="yourname@email.com" autocomplete="email" inputmode="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Type of Jewellery</label>
+          <select class="form-select form-input" id="ftype" name="jewellery_type">
+            <option value="" disabled selected>Select a category</option>
+            <option>Gold Ring</option>
+            <option>Gold Necklace</option>
+            <option>Gold Earrings</option>
+            <option>Gold Bangle / Kada</option>
+            <option>Gold Pendant</option>
+            <option>Bridal Set (Full)</option>
+            <option>Silver Ornament</option>
+            <option>Temple Jewellery</option>
+            <option>Custom / Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Occasion</label>
+          <select class="form-select form-input" id="foccasion" name="occasion">
+            <option value="" disabled selected>Select occasion</option>
+            <option>Wedding / Bridal</option>
+            <option>Engagement</option>
+            <option>Festival Gift</option>
+            <option>Birthday / Anniversary</option>
+            <option>Everyday Wear</option>
+            <option>Investment / Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Describe Your Design</label>
+          <textarea class="form-textarea" id="fdesc" name="message" placeholder="Share any design reference, weight preference, stone requirements, or anything else you have in mind..."></textarea>
+        </div>
+        <button class="btn-submit-full" id="cf-submit" type="submit">Send Enquiry →</button>
+
+      </form>
+
+      <!-- SUCCESS MESSAGE -->
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">✅</div>
+        <h3>Enquiry Sent!</h3>
+        <p>Thank you! We will get back to you within 24 hours.<br>
+        For faster response, WhatsApp us at +91 99444 50084.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: INFO -->
+    <div class="contact-info-panel reveal">
+      <a class="info-card" href="tel:+919944450084">
+        <div class="info-icon">📞</div>
+        <div>
+          <span class="info-label">Call Us</span>
+          <div class="info-value">
+            +91 99444 50084
+            <small>Mon – Sat, 10 AM – 8 PM · Sun, 10 AM – 2 PM</small>
+          </div>
+        </div>
+      </a>
+
+      <a class="info-card" href="https://wa.me/919944450084" target="_blank" rel="noopener">
+        <div class="info-icon">💬</div>
+        <div>
+          <span class="info-label">WhatsApp</span>
+          <div class="info-value">
+            +91 99444 50084
+            <small>Chat instantly — fastest response</small>
+          </div>
+        </div>
+      </a>
+
+      <a class="info-card" href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">
+        <div class="info-icon">📍</div>
+        <div>
+          <span class="info-label">Visit Our Showroom</span>
+          <div class="info-value">
+            Nehru Street, Sankarankovil<br>
+            Tirunelveli District, Tamil Nadu
+            <small>Parking available nearby</small>
+          </div>
+        </div>
+      </a>
+
+      <a class="info-card" href="mailto:info@sivagoldsilver.com">
+        <div class="info-icon">✉️</div>
+        <div>
+          <span class="info-label">Email Us</span>
+          <div class="info-value">
+            info@sivagoldsilver.com
+            <small>We reply within 24 hours</small>
+          </div>
+        </div>
+      </a>
+
+      <!-- HOURS -->
+      <div class="info-card" style="flex-direction:column;gap:12px">
+        <div style="display:flex;gap:16px;align-items:center">
+          <div class="info-icon">🕙</div>
+          <span class="info-label">Showroom Hours</span>
+        </div>
+        <table class="hours-table">
+          <tr><td>Monday – Saturday</td><td>10:00 AM – 8:00 PM</td></tr>
+          <tr><td>Sunday</td><td>10:00 AM – 2:00 PM</td></tr>
+          <tr><td style="color:rgba(200,192,176,.4)">Public Holidays</td><td style="color:rgba(200,192,176,.4)">Call to confirm</td></tr>
+        </table>
+      </div>
+
+      <!-- SOCIALS -->
+      <div class="contact-socials">
+        <a href="#" class="contact-social-btn">Instagram</a>
+        <a href="#" class="contact-social-btn">Facebook</a>
+        <a href="#" class="contact-social-btn">YouTube</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ MAP ══ -->
+<div class="map-section">
+  <div class="map-header reveal">
+    <span class="section-label">Find Us</span>
+    <h2 class="section-title" style="color:var(--white)">Our <em>Location</em></h2>
+    <div class="gold-rule"></div>
+  </div>
+  <div class="map-wrap">
+    <!-- Replace the src below with your actual Google Maps embed URL -->
+    <iframe
+      src="https://maps.google.com/maps?q=Sankarankovil,+Tamil+Nadu&output=embed"
+      allowfullscreen loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="SIVA Gold & Silver Location">
+    </iframe>
+    <a class="map-overlay-btn" href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">
+      📍 Open in Maps
+    </a>
+  </div>
+</div>
+
+<!-- ══ FAQ ══ -->
+<section class="faq-section">
+  <div style="text-align:center;max-width:680px;margin:0 auto" class="reveal">
+    <span class="section-label">Quick Answers</span>
+    <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
+    <div class="gold-rule"></div>
+  </div>
+
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Do you make custom jewellery designs?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        Yes! Custom jewellery is our speciality. You can bring a photo, sketch, or just describe your idea. Our craftsmen will design it and share a quote before starting. We also work on making duplicates of old family jewellery.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How long does a custom order take?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        Standard designs typically take 7–10 working days. Complex custom pieces or bridal sets may take 15–21 days. We always confirm the timeline before accepting an order so you can plan accordingly.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What gold purity do you use?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        We primarily work with 22K (916) gold for traditional jewellery and 18K gold for stone-set pieces. All our gold is BIS hallmarked. We provide a purity certificate and weight receipt with every purchase.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Can I exchange or melt old gold jewellery?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        Yes. We accept old gold for melting and remaking into new designs. The making charges apply on the new piece. Bring your old jewellery to the showroom and we'll assess the weight and purity and give you a fair value.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Do you deliver to other cities?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        We offer home delivery within Sankarankovil and nearby areas at no extra charge. For other cities in Tamil Nadu, we can arrange insured courier delivery. Contact us on WhatsApp to discuss delivery options.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What payment methods do you accept?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-answer">
+        We accept cash, all UPI apps (GPay, PhonePe, Paytm), bank transfer and cheque. For large orders an advance payment of 30–50% is required at the time of order confirmation.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHATSAPP CTA ══ -->
+<div class="wa-section">
+  <h2>Prefer to Chat?</h2>
+  <p>Send us a WhatsApp message with your design idea and we'll respond right away</p>
+  <a class="btn-wa-big" href="https://wa.me/919944450084?text=Hi%20SIVA%20Gold%20%26%20Silver%2C%20I%20would%20like%20to%20enquire%20about%20a%20jewellery%20design." target="_blank" rel="noopener">
+    <span>💬</span> WhatsApp Us Now
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid-desktop" id="footerDesktop">
+    <div>
+      <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="footer-logo-img">
+      <div class="footer-brand-name">SIVA</div>
+      <div class="footer-brand-sub">Gold &amp; Silver · Molding Works</div>
+      <div class="footer-tagline-txt">We Design Your Desires</div>
+      <div class="footer-socials" style="justify-content:flex-start;margin-top:18px;">
+        <a class="social-btn" href="#" aria-label="Instagram">IG</a>
+        <a class="social-btn" href="#" aria-label="Facebook">FB</a>
+        <a class="social-btn" href="#" aria-label="Twitter">TW</a>
+        <a class="social-btn" href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Collections</div>
+      <ul class="footer-links">
+        <li><a href="collections.html">Gold Jewellery</a></li>
+        <li><a href="collections.html">Silver Ornaments</a></li>
+        <li><a href="collections.html">Bridal Sets</a></li>
+        <li><a href="collections.html">Temple Jewellery</a></li>
+        <li><a href="collections.html">Custom Orders</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">Nehru Street, Sankarankovil, TN</a></li>
+        <li><a href="tel:+919944450084">+91 99444 50084</a></li>
+        <li><a href="mailto:info@sivagoldsilver.com">info@sivagoldsilver.com</a></li>
+        <li><span>Mon–Sat: 10AM–8PM · Sun: 10AM–2PM</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-mobile-only" id="footerMobile">
+    <div class="footer-brand">
+      <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="footer-logo-img-mobile">
+      <div class="footer-brand-name">SIVA</div>
+      <div class="footer-brand-sub">Gold &amp; Silver · Molding Works</div>
+      <div class="footer-tagline-txt">We Design Your Desires</div>
+      <div class="footer-socials">
+        <a class="social-btn" href="#" aria-label="Instagram">IG</a>
+        <a class="social-btn" href="#" aria-label="Facebook">FB</a>
+        <a class="social-btn" href="#" aria-label="Twitter">TW</a>
+        <a class="social-btn" href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div class="footer-accordion">
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Navigate<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="index.html"       onclick="closeAcc(this)">Home</a></li>
+            <li><a href="collections.html" onclick="closeAcc(this)">Collections</a></li>
+            <li><a href="gallery.html"     onclick="closeAcc(this)">Gallery</a></li>
+            <li><a href="about.html"       onclick="closeAcc(this)">About</a></li>
+            <li><a href="contact.html"     onclick="closeAcc(this)">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Contact Info<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">Nehru Street, Sankarankovil, TN</a></li>
+            <li><a href="tel:+919944450084">+91 99444 50084</a></li>
+            <li><a href="mailto:info@sivagoldsilver.com">info@sivagoldsilver.com</a></li>
+            <li><span>Mon–Sat: 10AM–8PM · Sun: 10AM–2PM</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 SIVA Gold &amp; Silver Molding Works, Sankarankovil. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* nav */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50), { passive: true });
+let menuOpen = false;
+function toggleMenu(btn) {
+  menuOpen = !menuOpen;
+  btn.classList.toggle('open', menuOpen);
+  document.getElementById('mobileDrawer').classList.toggle('open', menuOpen);
+  document.body.style.overflow = menuOpen ? 'hidden' : '';
+}
+function closeMenu() {
+  menuOpen = false;
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── Contact form — Web3Forms ── */
+async function submitForm(e) {
+  e.preventDefault();
+
+  const btn     = document.getElementById('cf-submit');
+  const form    = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+
+  /* validation */
+  const name  = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  const email = document.getElementById('femail').value.trim();
+  const desc  = document.getElementById('fdesc').value.trim();
+
+  if (!name) {
+    showContactError('Please enter your name.'); return;
+  }
+  if (!phone) {
+    showContactError('Please enter your phone number.'); return;
+  }
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showContactError('Please enter a valid email address.'); return;
+  }
+  if (!desc) {
+    showContactError('Please describe your desired piece.'); return;
+  }
+
+  /* loading */
+  btn.disabled    = true;
+  btn.textContent = 'Sending…';
+
+  try {
+    const res  = await fetch('https://api.web3forms.com/submit', {
+      method:  'POST',
+      body:    new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    const data = await res.json();
+
+    if (res.ok && data.success) {
+      form.style.display    = 'none';
+      success.style.display = 'block';
+      form.reset();
+    } else {
+      showContactError(data.message || 'Submission failed. Please try again.');
+      btn.disabled    = false;
+      btn.textContent = 'Send Enquiry →';
+    }
+  } catch {
+    showContactError('Network error. Please check your connection and try again.');
+    btn.disabled    = false;
+    btn.textContent = 'Send Enquiry →';
+  }
+}
+
+function showContactError(msg) {
+  let el = document.getElementById('cf-error');
+  if (!el) {
+    el = document.createElement('p');
+    el.id = 'cf-error';
+    el.style.cssText = 'color:#e07070;font-family:Cinzel,serif;font-size:.62rem;' +
+      'letter-spacing:.12em;margin-top:12px;text-align:center;';
+    document.getElementById('contactForm').appendChild(el);
+  }
+  el.textContent = msg;
+  el.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+/* FAQ accordion */
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-question').forEach(b => b.classList.remove('open'));
+  if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
+}
+
+/* footer */
+function toggleAcc(btn) {
+  const body = btn.nextElementSibling;
+  const was  = body.classList.contains('open');
+  document.querySelectorAll('.footer-acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.footer-acc-btn').forEach(b  => b.classList.remove('open'));
+  if (!was) { body.classList.add('open'); btn.classList.add('open'); }
+}
+function closeAcc() {
+  document.querySelectorAll('.footer-acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.footer-acc-btn').forEach(b  => b.classList.remove('open'));
+}
+function footerLayout() {
+  const d = window.innerWidth >= 1024;
+  const fd = document.getElementById('footerDesktop');
+  const fm = document.getElementById('footerMobile');
+  if (fd) fd.style.display = d ? 'grid' : 'none';
+  if (fm) fm.style.display = d ? 'none' : 'block';
+}
+footerLayout();
+window.addEventListener('resize', footerLayout);
+
+/* reveal */
+const obs = new IntersectionObserver((en) => {
+  en.forEach((e, i) => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 60); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

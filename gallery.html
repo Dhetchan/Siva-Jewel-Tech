@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0B1628">
+<title>Gallery – SIVA Gold & Silver</title>
+<meta name="description" content="Photo gallery of handcrafted 22K gold jewellery by SIVA Gold &amp; Silver Molding Works, Sankarankovil.">
+<link rel="icon" href="assets/logo/favicon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/logo/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;900&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero {
+  padding: calc(var(--nav-h) + 48px) 20px 48px;
+  background: linear-gradient(160deg, var(--navy) 0%, #0A1520 100%);
+  text-align: center;
+}
+.breadcrumb {
+  font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .2em;
+  color: var(--gold-dark); text-transform: uppercase; margin-bottom: 12px;
+}
+.breadcrumb a { color: var(--gold-dark); }
+.breadcrumb span { color: var(--text-light); }
+
+/* full gallery grid — 2 cols mobile, 3 tablet, 4 desktop */
+#fullGalleryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  padding: 20px 16px;
+  background: #0A1520;
+}
+.full-gallery-cell {
+  position: relative; overflow: hidden;
+  height: 180px; cursor: pointer;
+  background: #0B1628;
+  display: flex; align-items: center; justify-content: center;
+}
+.full-gallery-cell img {
+  width: 100%; height: 100%;
+  object-fit: contain;   /* show full jewellery, no cropping */
+  padding: 10px;
+  transition: transform .4s ease;
+}
+.full-gallery-cell:hover img   { transform: scale(1.06); }
+.full-gallery-cell:active img  { transform: scale(1.06); }
+.full-gallery-cell::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(11,22,40,.45); opacity: 0; transition: opacity .25s;
+}
+.full-gallery-cell:hover::after, .full-gallery-cell:active::after { opacity: 1; }
+.full-gallery-cell .gfallback {
+  font-size: 2.5rem; display: none; position: relative; z-index: 1;
+}
+
+/* load more area */
+.gallery-load-area {
+  background: #0A1520; text-align: center; padding: 24px 20px 60px;
+}
+.gallery-count {
+  font-family: 'Cinzel', serif; font-size: .58rem;
+  letter-spacing: .2em; color: var(--gold-dark); text-transform: uppercase;
+  margin-bottom: 20px; display: block;
+}
+
+@media(min-width:600px) {
+  #fullGalleryGrid { grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 24px; }
+  .full-gallery-cell { height: 200px; }
+}
+@media(min-width:1024px) {
+  #fullGalleryGrid { grid-template-columns: repeat(4, 1fr); gap: 5px; padding: 32px 60px; }
+  .full-gallery-cell { height: 240px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="nav-logo-img">
+    <span>SIVA<small>Gold &amp; Silver</small></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="gallery.html" style="color:var(--gold)">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html"         onclick="closeMenu()">Home</a>
+  <a href="collections.html"   onclick="closeMenu()">Collections</a>
+  <a href="gallery.html"       onclick="closeMenu()">Gallery</a>
+  <a href="about.html"   onclick="closeMenu()">About</a>
+  <a href="contact.html" onclick="closeMenu()">Contact</a>
+</div>
+
+
+<a href="https://wa.me/919944450084"
+   class="wa-fab"
+   target="_blank" rel="noopener"
+   aria-label="Chat with us on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+</a>
+
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; <span>Gallery</span></div>
+  <span class="section-label">Portfolio</span>
+  <h1 class="section-title" style="color:var(--white)">Our <em>Gallery</em></h1>
+  <div class="gold-rule"></div>
+</div>
+
+<!-- GALLERY GRID -->
+<div id="fullGalleryGrid"></div>
+
+<!-- LOAD MORE -->
+<div class="gallery-load-area">
+  <span class="gallery-count" id="galleryCount"></span>
+  <button class="btn-load-more" id="galleryLoadBtn" onclick="loadMoreGallery()">
+    <span id="galleryLoadTxt">Load More</span>
+  </button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid-desktop" id="footerDesktop">
+    <div>
+      <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="footer-logo-img">
+      <div class="footer-brand-name">SIVA</div>
+      <div class="footer-brand-sub">Gold &amp; Silver · Molding Works</div>
+      <div class="footer-tagline-txt">We Design Your Desires</div>
+      <div class="footer-socials" style="justify-content:flex-start;margin-top:18px;">
+        <a class="social-btn" href="#" aria-label="Instagram">IG</a>
+        <a class="social-btn" href="#" aria-label="Facebook">FB</a>
+        <a class="social-btn" href="#" aria-label="Twitter">TW</a>
+        <a class="social-btn" href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Collections</div>
+      <ul class="footer-links">
+        <li><a href="collections.html">Pendants</a></li>
+        <li><a href="collections.html">Men's Rings</a></li>
+        <li><a href="collections.html">Ladies Rings</a></li>
+        <li><a href="collections.html">Earrings</a></li>
+        <li><a href="contact.html">Custom Orders</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">Nehru Street, Sankarankovil, TN</a></li>
+        <li><a href="tel:+919944450084">+91 99444 50084</a></li>
+        <li><a href="mailto:info@sivagoldsilver.com">info@sivagoldsilver.com</a></li>
+        <li><span>Mon–Sat: 10AM–8PM · Sun: 10AM–2PM</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-mobile-only" id="footerMobile">
+    <div class="footer-brand">
+      <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="footer-logo-img-mobile">
+      <div class="footer-brand-name">SIVA</div>
+      <div class="footer-brand-sub">Gold &amp; Silver · Molding Works</div>
+      <div class="footer-tagline-txt">We Design Your Desires</div>
+      <div class="footer-socials">
+        <a class="social-btn" href="#" aria-label="Instagram">IG</a>
+        <a class="social-btn" href="#" aria-label="Facebook">FB</a>
+        <a class="social-btn" href="#" aria-label="Twitter">TW</a>
+        <a class="social-btn" href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div class="footer-accordion">
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Navigate<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Collections<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="collections.html">Pendants</a></li>
+            <li><a href="collections.html">Men's Rings</a></li>
+            <li><a href="collections.html">Ladies Rings</a></li>
+            <li><a href="collections.html">Earrings</a></li>
+            <li><a href="contact.html">Custom Orders</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Contact Info<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">Nehru Street, Sankarankovil, TN</a></li>
+            <li><a href="tel:+919944450084">+91 99444 50084</a></li>
+            <li><a href="mailto:info@sivagoldsilver.com">info@sivagoldsilver.com</a></li>
+            <li><span>Mon–Sat: 10AM–8PM · Sun: 10AM–2PM</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 SIVA Gold &amp; Silver Molding Works, Sankarankovil. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+  <div class="lightbox-content">
+    <img id="lightboxImg" alt="" class="lightbox-img">
+    <span id="lightboxFallback" class="lightbox-fallback"></span>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+/* nav */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50), { passive: true });
+let menuOpen = false;
+function toggleMenu(btn) {
+  menuOpen = !menuOpen;
+  btn.classList.toggle('open', menuOpen);
+  document.getElementById('mobileDrawer').classList.toggle('open', menuOpen);
+  document.body.style.overflow = menuOpen ? 'hidden' : '';
+}
+function closeMenu() {
+  menuOpen = false;
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* gallery render */
+const GALLERY_BATCH = 24;
+let galleryPage = 0;
+
+function renderGalleryBatch() {
+  const grid  = document.getElementById('fullGalleryGrid');
+  const btn   = document.getElementById('galleryLoadBtn');
+  const txt   = document.getElementById('galleryLoadTxt');
+  const count = document.getElementById('galleryCount');
+  const all   = SIVA_DATA.items.filter(i => i.gallery);
+  const start = galleryPage * GALLERY_BATCH;
+  const end   = Math.min(start + GALLERY_BATCH, all.length);
+
+  all.slice(start, end).forEach(item => {
+    const cell = document.createElement('div');
+    cell.className = 'full-gallery-cell';
+    const no    = (item.no || '').trim();
+    const label = item.name + (no ? ` — No. ${no}` : '');
+    cell.onclick   = () => openLightbox(item.img, label);
+    cell.innerHTML = `
+      <img src="${item.img}" alt="${label}" loading="lazy" decoding="async"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <span class="gfallback">🏺</span>`;
+    grid.appendChild(cell);
+  });
+
+  galleryPage++;
+  const loaded    = Math.min(galleryPage * GALLERY_BATCH, all.length);
+  const remaining = all.length - loaded;
+
+  count.textContent = `Showing ${loaded} of ${all.length} photos`;
+
+  if (remaining <= 0) {
+    btn.style.display = 'none';
+  } else {
+    txt.textContent = `Load More (${remaining} more)`;
+    btn.classList.remove('loading'); btn.disabled = false;
+  }
+}
+
+function loadMoreGallery() {
+  const btn = document.getElementById('galleryLoadBtn');
+  btn.classList.add('loading'); btn.disabled = true;
+  setTimeout(renderGalleryBatch, 300);
+}
+
+/* lightbox */
+function openLightbox(imgSrc, alt) {
+  const img = document.getElementById('lightboxImg');
+  const fb  = document.getElementById('lightboxFallback');
+  img.src = imgSrc; img.alt = alt || '';
+  img.style.display = 'block'; fb.style.display = 'none';
+  img.onerror = () => { img.style.display = 'none'; fb.style.display = 'block'; fb.textContent = '🏺'; };
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('lightboxImg').removeAttribute('src');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+/* init */
+document.addEventListener('DOMContentLoaded', renderGalleryBatch);
+
+/* ── footer accordion ── */
+function toggleAcc(btn) {
+  const body = btn.nextElementSibling;
+  const was  = body.classList.contains('open');
+  document.querySelectorAll('.footer-acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.footer-acc-btn').forEach(b  => b.classList.remove('open'));
+  if (!was) { body.classList.add('open'); btn.classList.add('open'); }
+}
+function closeAcc() {
+  document.querySelectorAll('.footer-acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.footer-acc-btn').forEach(b  => b.classList.remove('open'));
+}
+
+/* ── footer layout ── */
+function footerLayout() {
+  const d  = window.innerWidth >= 1024;
+  const fd = document.getElementById('footerDesktop');
+  const fm = document.getElementById('footerMobile');
+  if (fd) fd.style.display = d ? 'grid' : 'none';
+  if (fm) fm.style.display = d ? 'none' : 'block';
+}
+footerLayout();
+window.addEventListener('resize', footerLayout);
+</script>
+</body>
+</html>

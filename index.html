@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0B1628">
+<title>SIVA Gold &amp; Silver – Molding Works, Sankarankovil</title>
+<meta name="description" content="SIVA Gold &amp; Silver Molding Works, Sankarankovil — handcrafted 22K gold pendants, rings and earrings. Custom jewellery designs since 2005. We Design Your Desires.">
+<link rel="icon" href="assets/logo/favicon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/logo/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;900&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV: logo LEFT, shop name RIGHT -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">
+    <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="nav-logo-img">
+    <span>SIVA<small>Gold &amp; Silver</small></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html"        onclick="closeMenu()">Home</a>
+  <a href="collections.html" onclick="closeMenu()">Collections</a>
+  <a href="gallery.html"     onclick="closeMenu()">Gallery</a>
+  <a href="about.html"   onclick="closeMenu()">About</a>
+  <a href="contact.html" onclick="closeMenu()">Contact</a>
+</div>
+
+<a href="https://wa.me/919944450084"
+   class="wa-fab"
+   target="_blank" rel="noopener"
+   aria-label="Chat with us on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+</a>
+
+<!-- HERO: logo LEFT, text RIGHT -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-split">
+
+      <!-- LEFT: Logo -->
+      <div class="hero-logo-col">
+        <img src="assets/logo/diamond.webp" alt="SIVA Gold & Silver" class="hero-logo-img">
+      </div>
+
+      <!-- RIGHT: Text -->
+      <div class="hero-text-col">
+        <div class="hero-badge">Est. 2005 · SANKARANKOVIL · India</div>
+        <div class="hero-brand">SIVA</div>
+        <div class="diamond-row">
+          <div class="line-dec"></div>
+          <span></span><span></span><span></span>
+          <div class="line-dec r"></div>
+        </div>
+        <div class="hero-sub">Gold &amp; Silver</div>
+        <div class="hero-tagline">Molding Works</div>
+        <div class="hero-tagline">We Design Your Desires</div>
+        <a href="assets/pdf/Siva_Gold_Silvers_Molding_Works_Catalog-web.pdf"
+   class="btn-primary"
+   download="Siva_Gold_Silvers_Molding_Works_Catalog.pdf">
+    <span>Download Catalogue</span></a>
+      </div>
+
+    </div>
+  </div>
+  <div class="hero-scroll-hint">Scroll</div>
+</section>
+
+<!-- MARQUEE 1 -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Gold Jewellery</span><span>Silver Ornaments</span><span>Custom Designs</span>
+    <span>Bridal Collections</span><span>Handcrafted Pieces</span><span>We Design Your Desires</span>
+    <span>Gold Jewellery</span><span>Silver Ornaments</span><span>Custom Designs</span>
+    <span>Bridal Collections</span><span>Handcrafted Pieces</span><span>We Design Your Desires</span>
+  </div>
+</div>
+
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="collections-header reveal">
+    <span class="section-label">Our Craft</span>
+    <h2 class="section-title">We Design Your <em>Desires</em></h2>
+    <div class="gold-rule"></div>
+  </div>
+  <!-- Category quick-filter chips -->
+  <div class="home-cat-filters" id="homeCatFilters"></div>
+
+  <!-- Dynamic grid — populated from data.js (6 items) -->
+  <div class="collections-grid" id="collectionsGrid"></div>
+
+  <!-- View All -->
+  <div class="collections-footer">
+    <a href="collections.html" class="btn-view-all-big">Browse All Collections →</a>
+  </div>
+</section>
+
+<!-- MARQUEE 2 -->
+<div class="marquee-strip dark">
+  <div class="marquee-inner rev">
+    <span>Rings</span><span>Necklaces</span><span>Bangles</span>
+    <span>Earrings</span><span>Pendants</span><span>Bracelets</span>
+    <span>Rings</span><span>Necklaces</span><span>Bangles</span>
+    <span>Earrings</span><span>Pendants</span><span>Bracelets</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-content reveal">
+    <div class="about-hero-img"><img src="assets/about/about.webp" alt="About Us"></div>
+    <div>
+      <span class="section-label">Our Story</span>
+      <h2 class="section-title">Welcome to <em>Luxurious</em> Gold Design Molding</h2>
+      <div class="gold-rule left"></div>
+      <p class="about-body">
+        At SIVA Gold &amp; Silver, every piece is more than jewellery — it is a legacy cast in gold.
+        Founded in the heart of Sankarankovil, we have spent decades perfecting the art of traditional
+        South Indian craftsmanship fused with contemporary design sensibilities.
+        <br><br>
+        Each creation passes through the hands of master artisans who pour generations of knowledge
+        into every curve and setting, ensuring that what you wear is not merely an ornament but a
+        story told in precious metal.
+      </p>
+      <div class="about-stats">
+        <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">Years of Craft</div></div>
+        <div class="stat-item"><div class="stat-num">5K+</div><div class="stat-label">Designs Created</div></div>
+        <div class="stat-item"><div class="stat-num">10K+</div><div class="stat-label">Happy Clients</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section id="press">
+  <div class="press-header reveal">
+    <span class="section-label">What They Say</span>
+    <h2 class="section-title">In the <em>Press</em></h2>
+    <div class="gold-rule"></div>
+  </div>
+  <div class="press-scroll-wrap" id="pressScroll">
+    <div class="press-card reveal">
+      <span class="quote-mark">"</span>
+      <p class="press-text">A workshop where tradition still does the talking. SIVA's moulded pendants carry the finish and weight accuracy you expect from a house that has been at it for two decades.</p>
+      <div class="press-source">Yuthika Post</div>
+    </div>
+    <div class="press-card reveal">
+      <span class="quote-mark">"</span>
+      <p class="press-text">The craftsmanship at SIVA Gold &amp; Silver is simply unmatched. Their attention to detail and dedication to quality sets them apart from every other jeweller.</p>
+      <div class="press-source">Svarnim's Luxe Travels</div>
+    </div>
+    <div class="press-card reveal">
+      <span class="quote-mark">"</span>
+      <p class="press-text">For bridal jewellery that truly reflects tradition and elegance, SIVA remains our top recommendation year after year. An institution in South Indian goldsmithing.</p>
+      <div class="press-source">Sumedhas Journal</div>
+    </div>
+  </div>
+  <div class="press-dots" id="pressDots">
+    <div class="press-dot active" onclick="scrollPress(0)"></div>
+    <div class="press-dot" onclick="scrollPress(1)"></div>
+    <div class="press-dot" onclick="scrollPress(2)"></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-header reveal">
+    <span class="section-label">Portfolio</span>
+    <h2 class="section-title">Our <em>Gallery</em></h2>
+    <div class="gold-rule"></div>
+  </div>
+  <!-- Dynamic gallery — shows 6 featured from data.js -->
+  <div class="gallery-grid" id="galleryGrid"></div>
+
+  <div class="gallery-footer">
+    <a href="gallery.html" class="btn-view-all gold">View Full Gallery →</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner reveal">
+    <span class="section-label">Get in Touch</span>
+    <h2 class="section-title">Commission Your <em>Dream Piece</em></h2>
+    <div class="gold-rule"></div>
+    <p class="contact-body">Tell us your vision and our master craftsmen will bring it to life.<br>Every desire deserves to be worn.</p>
+    <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+      <!-- Web3Forms hidden fields — do not remove -->
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+      <input type="hidden" name="subject"    value="New Enquiry — SIVA Gold & Silver">
+      <input type="hidden" name="from_name"  value="SIVA Gold & Silver Website">
+      <!-- Honeypot spam protection — must stay hidden -->
+      <input type="text"   name="botcheck"   style="display:none" tabindex="-1" autocomplete="off">
+
+      <input class="form-input" type="text"   id="cf-name"    name="name"    placeholder="Your Name"                        aria-label="Your Name"            autocomplete="name">
+      <input class="form-input" type="email"  id="cf-email"   name="email"   placeholder="Email Address"                    aria-label="Email Address"        autocomplete="email" inputmode="email">
+      <input class="form-input" type="tel"    id="cf-phone"   name="phone"   placeholder="Phone / WhatsApp Number"          aria-label="Phone or WhatsApp Number" autocomplete="tel" inputmode="tel">
+      <input class="form-input" type="text"   id="cf-subject" name="topic"   placeholder="Subject (e.g. Bridal Necklace Design)" aria-label="Subject">
+      <textarea class="form-textarea"         id="cf-message" name="message" placeholder="Describe your desired piece..." aria-label="Describe your desired piece"></textarea>
+      <button class="btn-submit" id="cf-submit" type="submit">Send Enquiry</button>
+    </form>
+    <!-- Success / Error message — hidden by default, shown by JS, no CSS change needed -->
+    <div id="cf-feedback" style="display:none;margin-top:18px;padding:14px 18px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.14em;text-align:center;border:1px solid;"></div>
+    <div class="quick-contact">
+      <a class="qc-item" href="tel:+919944450084">
+        <span class="qc-icon">📞</span>
+        <div><span class="qc-label">Call Us</span>+91 99444 50084</div>
+      </a>
+      <a class="qc-item" href="https://wa.me/919944450084" target="_blank" rel="noopener">
+        <span class="qc-icon">💬</span>
+        <div><span class="qc-label">WhatsApp</span>Chat with us now</div>
+      </a>
+      <a class="qc-item" href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">
+        <span class="qc-icon">📍</span>
+        <div><span class="qc-label">Visit Us</span>Nehru Street, Sankarankovil, Tamil Nadu</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+  <!-- Desktop 4-col -->
+  <div class="footer-grid-desktop" id="footerDesktop">
+    <div>
+      <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="footer-logo-img">
+      <div class="footer-brand-name">SIVA</div>
+      <div class="footer-brand-sub">Gold &amp; Silver · Molding Works</div>
+      <div class="footer-tagline-txt">We Design Your Desires</div>
+      <div class="footer-socials" style="justify-content:flex-start;margin-top:18px;">
+        <a class="social-btn" href="#" aria-label="Instagram">IG</a>
+        <a class="social-btn" href="#" aria-label="Facebook">FB</a>
+        <a class="social-btn" href="#" aria-label="Twitter">TW</a>
+        <a class="social-btn" href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Collections</div>
+      <ul class="footer-links">
+        <li><a href="collections.html">Pendants</a></li>
+        <li><a href="collections.html">Men's Rings</a></li>
+        <li><a href="collections.html">Ladies Rings</a></li>
+        <li><a href="collections.html">Earrings</a></li>
+        <li><a href="contact.html">Custom Orders</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">Nehru Street, Sankarankovil, TN</a></li>
+        <li><a href="tel:+919944450084">+91 99444 50084</a></li>
+        <li><a href="mailto:info@sivagoldsilver.com">info@sivagoldsilver.com</a></li>
+        <li><span>Mon–Sat: 10AM–8PM · Sun: 10AM–2PM</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Mobile -->
+  <div class="footer-mobile-only" id="footerMobile">
+    <div class="footer-brand">
+      <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="footer-logo-img-mobile">
+      <div class="footer-brand-name">SIVA</div>
+      <div class="footer-brand-sub">Gold &amp; Silver · Molding Works</div>
+      <div class="footer-tagline-txt">We Design Your Desires</div>
+      <div class="footer-socials">
+        <a class="social-btn" href="#" aria-label="Instagram">IG</a>
+        <a class="social-btn" href="#" aria-label="Facebook">FB</a>
+        <a class="social-btn" href="#" aria-label="Twitter">TW</a>
+        <a class="social-btn" href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div class="footer-accordion">
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Navigate<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="#hero"        onclick="closeAcc(this)">Home</a></li>
+            <li><a href="#collections" onclick="closeAcc(this)">Collections</a></li>
+            <li><a href="#gallery"     onclick="closeAcc(this)">Gallery</a></li>
+            <li><a href="#about"       onclick="closeAcc(this)">About</a></li>
+            <li><a href="#contact"     onclick="closeAcc(this)">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Collections<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="collections.html">Pendants</a></li>
+            <li><a href="collections.html">Men's Rings</a></li>
+            <li><a href="collections.html">Ladies Rings</a></li>
+            <li><a href="collections.html">Earrings</a></li>
+            <li><a href="contact.html">Custom Orders</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Contact Info<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">Nehru Street, Sankarankovil, TN</a></li>
+            <li><a href="tel:+919944450084">+91 99444 50084</a></li>
+            <li><a href="mailto:info@sivagoldsilver.com">info@sivagoldsilver.com</a></li>
+            <li><span>Mon–Sat: 10AM–8PM · Sun: 10AM–2PM</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 SIVA Gold &amp; Silver Molding Works, Sankarankovil. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+  <div class="lightbox-content">
+    <img id="lightboxImg" alt="" class="lightbox-img">
+    <span id="lightboxFallback" class="lightbox-fallback"></span>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

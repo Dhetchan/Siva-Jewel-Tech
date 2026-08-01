@@ -1,0 +1,19 @@
+# ─────────────────────────────────────────────────────────────
+#  Large source assets — kept on disk, deliberately not uploaded
+# ─────────────────────────────────────────────────────────────
+
+# Full-resolution product PNGs (~215 MB).
+# The site loads the .webp copy that sits next to each one.
+# Keep a backup of these somewhere off this machine.
+assets/**/*.png
+!assets/logo/favicon-192.png
+
+# Original catalogue (173 MB) — exceeds GitHub's 100 MB per-file limit.
+# The site links assets/pdf/..._Catalog-web.pdf (7.6 MB) instead.
+assets/pdf/Siva_Gold_Silvers_Molding_Works_Catalog.pdf
+
+# ── OS / editor noise ──
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp

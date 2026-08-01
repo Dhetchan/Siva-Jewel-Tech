@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0B1628">
+<title>About Us – SIVA Gold & Silver</title>
+<meta name="description" content="SIVA Gold &amp; Silver Molding Works has been crafting gold and silver jewellery in Sankarankovil since 2005. Our story, values and process.">
+<link rel="icon" href="assets/logo/favicon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/logo/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;900&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ── PAGE HERO ── */
+.page-hero {
+  min-height: 52vh;
+  padding: calc(var(--nav-h) + 60px) 24px 60px;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 55%, #0D1E3A 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; position: relative; overflow: hidden;
+}
+.page-hero::before {
+  content: ''; position: absolute; top: -80px; right: -80px;
+  width: 260px; height: 260px;
+  border: 1px solid rgba(201,168,76,.1); border-radius: 50%; pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; bottom: -50px; left: -50px;
+  width: 180px; height: 180px;
+  border: 1px solid rgba(201,168,76,.07); border-radius: 50%; pointer-events: none;
+}
+.page-hero-inner { position: relative; z-index: 2; animation: fadeUp .7s ease both; }
+.breadcrumb {
+  font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .22em;
+  color: var(--gold-dark); text-transform: uppercase; margin-bottom: 14px;
+}
+.breadcrumb a { color: var(--gold-dark); transition: color .2s; }
+.breadcrumb a:hover { color: var(--gold); }
+.page-hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.2rem, 8vw, 4.5rem);
+  font-weight: 900; letter-spacing: .06em;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.page-hero p {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: clamp(.9rem, 3vw, 1.15rem);
+  color: var(--text-light); margin-top: 14px; letter-spacing: .08em;
+}
+
+/* ── SHARED SECTION ── */
+.about-section {
+  padding: 64px 20px;
+}
+.about-section.alt { background: var(--navy-mid); }
+.about-section.dark { background: #0A1520; }
+
+/* ── STORY ── */
+.story-grid {
+  display: flex; flex-direction: column; gap: 36px;
+  max-width: 960px; margin: 0 auto;
+}
+.story-img-wrap {
+  position: relative;
+  border: 1px solid rgba(201,168,76,.2);
+}
+.story-img-wrap::before {
+  content: '';
+  position: absolute; inset: 10px;
+  border: 1px solid rgba(201,168,76,.1);
+  pointer-events: none; z-index: 1;
+}
+.story-img-box {
+  height: 240px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.story-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.story-text {}
+.story-text .section-label { text-align: left; }
+.story-text .section-title { text-align: left; }
+.story-body {
+  font-size: .9rem; line-height: 1.95; color: var(--text-light);
+  margin-top: 20px;
+}
+.story-body p + p { margin-top: 16px; }
+
+/* ── STATS BAND ── */
+.stats-band {
+  background: var(--navy-mid);
+  border-top: 1px solid rgba(201,168,76,.12);
+  border-bottom: 1px solid rgba(201,168,76,.12);
+  padding: 48px 20px;
+}
+.stats-row {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; max-width: 900px; margin: 0 auto;
+  border: 1px solid rgba(201,168,76,.15);
+}
+.stat-box {
+  padding: 28px 16px; text-align: center;
+  background: rgba(11,22,40,.6);
+  border-right: 1px solid rgba(201,168,76,.12);
+  border-bottom: 1px solid rgba(201,168,76,.12);
+}
+.stat-box:nth-child(2n) { border-right: none; }
+.stat-box:nth-last-child(-n+2) { border-bottom: none; }
+.stat-box-num {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 8vw, 3rem);
+  font-weight: 600; color: var(--gold); line-height: 1;
+}
+.stat-box-label {
+  font-family: 'Cinzel', serif; font-size: .58rem;
+  letter-spacing: .16em; color: var(--text-light);
+  text-transform: uppercase; margin-top: 8px;
+}
+.stat-box-desc {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: .85rem; color: rgba(200,192,176,.5);
+  margin-top: 6px; line-height: 1.5;
+}
+
+/* ── VALUES ── */
+.values-grid {
+  display: grid; grid-template-columns: 1fr; gap: 16px;
+  max-width: 960px; margin: 36px auto 0;
+}
+.value-card {
+  background: rgba(201,168,76,.04);
+  border: 1px solid rgba(201,168,76,.14);
+  padding: 28px 22px;
+  display: flex; gap: 18px; align-items: flex-start;
+}
+.value-icon {
+  font-size: 1.8rem; flex-shrink: 0; margin-top: 2px;
+}
+.value-title {
+  font-family: 'Cinzel', serif; font-size: .72rem;
+  letter-spacing: .18em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.value-desc {
+  font-size: .88rem; line-height: 1.8; color: var(--text-light);
+}
+
+/* ── PROCESS TIMELINE ── */
+.process-list {
+  max-width: 680px; margin: 36px auto 0;
+  display: flex; flex-direction: column; gap: 0;
+}
+.process-step {
+  display: flex; gap: 20px; align-items: flex-start;
+  padding-bottom: 32px; position: relative;
+}
+.process-step::before {
+  content: '';
+  position: absolute; left: 19px; top: 40px;
+  width: 1px; height: calc(100% - 20px);
+  background: linear-gradient(to bottom, rgba(201,168,76,.3), transparent);
+}
+.process-step:last-child::before { display: none; }
+.process-num {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  border: 1px solid var(--gold-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif; font-size: .7rem;
+  color: var(--gold); background: var(--navy);
+  position: relative; z-index: 1;
+}
+.process-content {}
+.process-title {
+  font-family: 'Cinzel', serif; font-size: .72rem;
+  letter-spacing: .15em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 6px; margin-top: 8px;
+}
+.process-desc { font-size: .88rem; line-height: 1.8; color: var(--text-light); }
+
+/* ── TESTIMONIALS ── */
+.testimonials-grid {
+  display: flex; flex-direction: column; gap: 16px;
+  max-width: 900px; margin: 36px auto 0;
+}
+.testimonial-card {
+  background: var(--navy-light);
+  border: 1px solid rgba(201,168,76,.12);
+  padding: 28px 24px;
+}
+.t-quote { font-size: 2.5rem; color: var(--gold); line-height: .7; font-family: 'Cormorant Garamond', serif; display: block; margin-bottom: 14px; }
+.t-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: .98rem; line-height: 1.75; color: var(--text-light); margin-bottom: 18px; }
+.t-author { display: flex; align-items: center; gap: 12px; }
+.t-avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(201,168,76,.15); border: 1px solid rgba(201,168,76,.3); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+.t-name { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .16em; color: var(--gold); text-transform: uppercase; display: block; }
+.t-loc  { font-size: .75rem; color: rgba(200,192,176,.5); margin-top: 2px; }
+
+/* ── CTA BAND ── */
+.cta-band {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+  padding: 56px 24px; text-align: center;
+}
+.cta-band h2 {
+  font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 5vw, 2.4rem);
+  font-weight: 900; color: var(--navy); letter-spacing: .06em; margin-bottom: 10px;
+}
+.cta-band p {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: clamp(.9rem, 3vw, 1.1rem); color: rgba(11,22,40,.7);
+  margin-bottom: 28px;
+}
+.cta-buttons { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.btn-cta-dark {
+  display: inline-block; background: var(--navy); color: var(--gold);
+  font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .2em;
+  text-transform: uppercase; padding: 14px 36px; min-width: 200px; text-align: center;
+  transition: background .25s;
+}
+.btn-cta-dark:hover { background: var(--navy-mid); }
+.btn-cta-outline {
+  display: inline-block; border: 2px solid var(--navy); color: var(--navy);
+  font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .2em;
+  text-transform: uppercase; padding: 13px 36px; min-width: 200px; text-align: center;
+  transition: background .25s, color .25s;
+}
+.btn-cta-outline:hover { background: var(--navy); color: var(--gold); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+
+/* ── RESPONSIVE ── */
+@media(min-width:640px){
+  .about-section { padding: 80px 32px; }
+  .stats-row { grid-template-columns: repeat(4, 1fr); }
+  .stat-box { border-bottom: none; }
+  .stat-box:nth-child(2n) { border-right: 1px solid rgba(201,168,76,.12); }
+  .stat-box:last-child { border-right: none; }
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { flex-direction: row; flex-wrap: wrap; }
+  .testimonial-card { flex: 1 1 calc(50% - 8px); }
+  .cta-buttons { flex-direction: row; justify-content: center; }
+}
+@media(min-width:1024px){
+  :root { --nav-h: 68px; }
+  nav { padding: 0 60px; }
+  .hamburger { display: none; }
+  .nav-links { display: flex; gap: 38px; list-style: none; }
+  .nav-links a { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.16em; color:var(--text-light); text-transform:uppercase; transition:color .3s; }
+  .nav-links a:hover { color: var(--gold); }
+  .about-section { padding: 100px 60px; }
+  .story-grid { flex-direction: row; gap: 60px; align-items: center; }
+  .story-img-wrap { flex: 0 0 400px; }
+  .story-img-box { height: 360px; }
+  .values-grid { grid-template-columns: repeat(3, 1fr); }
+  .testimonials-grid { flex-direction: row; }
+  .testimonial-card { flex: 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="nav-logo-img">
+    <span>SIVA<small>Gold &amp; Silver</small></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html" style="color:var(--gold)">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html"       onclick="closeMenu()">Home</a>
+  <a href="collections.html" onclick="closeMenu()">Collections</a>
+  <a href="gallery.html"     onclick="closeMenu()">Gallery</a>
+  <a href="about.html"       onclick="closeMenu()">About</a>
+  <a href="contact.html"     onclick="closeMenu()">Contact</a>
+</div>
+
+
+<a href="https://wa.me/919944450084"
+   class="wa-fab"
+   target="_blank" rel="noopener"
+   aria-label="Chat with us on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+</a>
+
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; <span style="color:var(--text-light)">About Us</span></div>
+    <h1>About <em style="-webkit-text-fill-color:transparent;background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));-webkit-background-clip:text;background-clip:text;">SIVA</em></h1>
+    <p>Two decades of passion, craft and legacy — cast in gold</p>
+  </div>
+</div>
+
+<!-- ══ OUR STORY ══ -->
+<section class="about-section reveal">
+  <div class="story-grid">
+    <div class="story-img-wrap">
+      <div class="story-img-box">
+        <img src="assets/about/about.webp" alt="Our Story">
+      </div>
+    </div>
+    <div class="story-text">
+      <span class="section-label">Our Story</span>
+      <h2 class="section-title">Born from <em>Passion</em>, Built on Trust</h2>
+      <div class="gold-rule left"></div>
+      <div class="story-body">
+        <p>
+          SIVA Gold &amp; Silver Molding Works was founded in 2005 in the heart of
+          Sankarankovil, Tamil Nadu, with a simple belief — every piece of jewellery
+          should tell a story. What began as a small workshop driven by one master
+          craftsman's vision has grown into one of the region's most trusted names
+          in gold and silver jewellery.
+        </p>
+        <p>
+          For over two decades, we have dedicated ourselves to the art of traditional
+          South Indian goldsmithing, blending age-old techniques with contemporary
+          design sensibilities. Every ring, necklace, bangle and pendant that leaves
+          our workshop carries the mark of hands that have poured generations of
+          knowledge into their craft.
+        </p>
+        <p>
+          From bridal sets that grace the most important day of a family's life to
+          everyday pieces worn with pride — we design your desires, one jewel at a time.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS BAND ══ -->
+<div class="stats-band">
+  <div class="stats-row reveal">
+    <div class="stat-box">
+      <div class="stat-box-num">20+</div>
+      <div class="stat-box-label">Years of Craft</div>
+      <div class="stat-box-desc">Est. 2005 in Sankarankovil</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-box-num">5K+</div>
+      <div class="stat-box-label">Designs Created</div>
+      <div class="stat-box-desc">Custom &amp; handcrafted pieces</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-box-num">10K+</div>
+      <div class="stat-box-label">Happy Clients</div>
+      <div class="stat-box-desc">Across Tamil Nadu &amp; beyond</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-box-num">100%</div>
+      <div class="stat-box-label">Hallmark Gold</div>
+      <div class="stat-box-desc">BIS certified purity guaranteed</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ OUR VALUES ══ -->
+<section class="about-section alt reveal">
+  <div style="max-width:960px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:8px">
+      <span class="section-label">What We Stand For</span>
+      <h2 class="section-title">Our <em>Values</em></h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🏅</div>
+        <div>
+          <div class="value-title">Purity First</div>
+          <div class="value-desc">Every gram of gold and silver we use is BIS hallmarked and certified. We never compromise on the quality of materials — your trust is our most precious metal.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🎨</div>
+        <div>
+          <div class="value-title">Custom Craftsmanship</div>
+          <div class="value-desc">We believe jewellery is deeply personal. Every custom order is designed in close collaboration with our clients, ensuring the final piece is exactly what they envisioned.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div>
+          <div class="value-title">Honest Pricing</div>
+          <div class="value-desc">Transparent rates, no hidden charges. We provide detailed weight certificates and making charge breakdowns with every piece — because trust is built in the details.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌿</div>
+        <div>
+          <div class="value-title">Heritage &amp; Tradition</div>
+          <div class="value-desc">Our techniques are rooted in centuries of South Indian jewellery tradition — temple jewellery, antique finishes, Kundan work — preserved and passed on with pride.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚡</div>
+        <div>
+          <div class="value-title">Fast Turnaround</div>
+          <div class="value-desc">We respect your time. Most standard designs are delivered within 7–10 days. Bridal and custom bulk orders are scheduled with dedicated timelines.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🔒</div>
+        <div>
+          <div class="value-title">Lifetime Support</div>
+          <div class="value-desc">Every piece we make is backed by our commitment. Free cleaning, minor repairs, and resizing support — because a relationship with our clients doesn't end at delivery.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OUR PROCESS ══ -->
+<section class="about-section dark reveal">
+  <div style="max-width:700px;margin:0 auto;text-align:center">
+    <span class="section-label">How We Work</span>
+    <h2 class="section-title">From <em>Desire</em> to Design</h2>
+    <div class="gold-rule"></div>
+  </div>
+  <div class="process-list">
+    <div class="process-step">
+      <div class="process-num">01</div>
+      <div class="process-content">
+        <div class="process-title">Consultation</div>
+        <div class="process-desc">Walk into our showroom or reach us on WhatsApp. Share your vision — the occasion, the design reference, your budget. Our team listens carefully and guides you on metal, weight and style.</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">02</div>
+      <div class="process-content">
+        <div class="process-title">Design &amp; Quote</div>
+        <div class="process-desc">We sketch the design and share a detailed quote covering gold/silver weight, making charges and stone costs (if any). No surprises — everything is transparent before we begin.</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">03</div>
+      <div class="process-content">
+        <div class="process-title">Crafting</div>
+        <div class="process-desc">Our master artisans begin crafting your piece by hand using traditional methods. Each step — from wax casting to stone setting — is done with meticulous care.</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">04</div>
+      <div class="process-content">
+        <div class="process-title">Quality Check</div>
+        <div class="process-desc">Before delivery, every piece undergoes a thorough quality inspection — weight verification, finish check and purity testing. We only deliver what we are proud of.</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">05</div>
+      <div class="process-content">
+        <div class="process-title">Delivery</div>
+        <div class="process-desc">Your jewellery is handed over with a weight certificate and making charge receipt. We also offer safe home delivery within Sankarankovil and nearby areas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="about-section alt reveal">
+  <div style="text-align:center;margin-bottom:8px">
+    <span class="section-label">Client Stories</span>
+    <h2 class="section-title">What Our <em>Clients Say</em></h2>
+    <div class="gold-rule"></div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <span class="t-quote">"</span>
+      <p class="t-text">I gave them a photo of my grandmother's necklace and asked for something inspired by it. What they delivered was beyond my expectations — exactly the same feeling, but completely new and modern.</p>
+      <div class="t-author">
+        <div class="t-avatar">👩</div>
+        <div>
+          <span class="t-name">Priya Lakshmi</span>
+          <div class="t-loc">Sankarankovil</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <span class="t-quote">"</span>
+      <p class="t-text">We ordered the complete bridal set for my daughter's wedding. The craftsmanship was flawless, the weight was exact and the delivery was on time. SIVA has our family's trust for life.</p>
+      <div class="t-author">
+        <div class="t-avatar">👨</div>
+        <div>
+          <span class="t-name">Murugesan R.</span>
+          <div class="t-loc">Tenkasi</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <span class="t-quote">"</span>
+      <p class="t-text">The silver bangles I bought are stunning. The finish is so smooth and the design is intricate — you can tell real craftsmen made them. Will definitely be back for more.</p>
+      <div class="t-author">
+        <div class="t-avatar">👩</div>
+        <div>
+          <span class="t-name">Kavitha S.</span>
+          <div class="t-loc">Tirunelveli</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BAND ══ -->
+<div class="cta-band">
+  <h2>Ready to Design Your Desire?</h2>
+  <p>Visit our showroom or reach us on WhatsApp — we'd love to create something special for you.</p>
+  <div class="cta-buttons">
+    <a href="contact.html" class="btn-cta-dark">Contact Us</a>
+    <a href="https://wa.me/919944450084" target="_blank" rel="noopener" class="btn-cta-outline">WhatsApp Us</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid-desktop" id="footerDesktop">
+    <div>
+      <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="footer-logo-img">
+      <div class="footer-brand-name">SIVA</div>
+      <div class="footer-brand-sub">Gold &amp; Silver · Molding Works</div>
+      <div class="footer-tagline-txt">We Design Your Desires</div>
+      <div class="footer-socials" style="justify-content:flex-start;margin-top:18px;">
+        <a class="social-btn" href="#" aria-label="Instagram">IG</a>
+        <a class="social-btn" href="#" aria-label="Facebook">FB</a>
+        <a class="social-btn" href="#" aria-label="Twitter">TW</a>
+        <a class="social-btn" href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Collections</div>
+      <ul class="footer-links">
+        <li><a href="collections.html">Gold Jewellery</a></li>
+        <li><a href="collections.html">Silver Ornaments</a></li>
+        <li><a href="collections.html">Bridal Sets</a></li>
+        <li><a href="collections.html">Temple Jewellery</a></li>
+        <li><a href="collections.html">Custom Orders</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">Nehru Street, Sankarankovil, TN</a></li>
+        <li><a href="tel:+919944450084">+91 99444 50084</a></li>
+        <li><a href="mailto:info@sivagoldsilver.com">info@sivagoldsilver.com</a></li>
+        <li><span>Mon–Sat: 10AM–8PM · Sun: 10AM–2PM</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-mobile-only" id="footerMobile">
+    <div class="footer-brand">
+      <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="footer-logo-img-mobile">
+      <div class="footer-brand-name">SIVA</div>
+      <div class="footer-brand-sub">Gold &amp; Silver · Molding Works</div>
+      <div class="footer-tagline-txt">We Design Your Desires</div>
+      <div class="footer-socials">
+        <a class="social-btn" href="#" aria-label="Instagram">IG</a>
+        <a class="social-btn" href="#" aria-label="Facebook">FB</a>
+        <a class="social-btn" href="#" aria-label="Twitter">TW</a>
+        <a class="social-btn" href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div class="footer-accordion">
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Navigate<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="index.html"       onclick="closeAcc(this)">Home</a></li>
+            <li><a href="collections.html" onclick="closeAcc(this)">Collections</a></li>
+            <li><a href="gallery.html"     onclick="closeAcc(this)">Gallery</a></li>
+            <li><a href="about.html"       onclick="closeAcc(this)">About</a></li>
+            <li><a href="contact.html"     onclick="closeAcc(this)">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Contact Info<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">Nehru Street, Sankarankovil, TN</a></li>
+            <li><a href="tel:+919944450084">+91 99444 50084</a></li>
+            <li><a href="mailto:info@sivagoldsilver.com">info@sivagoldsilver.com</a></li>
+            <li><span>Mon–Sat: 10AM–8PM · Sun: 10AM–2PM</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 SIVA Gold &amp; Silver Molding Works, Sankarankovil. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50), { passive: true });
+let menuOpen = false;
+function toggleMenu(btn) {
+  menuOpen = !menuOpen;
+  btn.classList.toggle('open', menuOpen);
+  document.getElementById('mobileDrawer').classList.toggle('open', menuOpen);
+  document.body.style.overflow = menuOpen ? 'hidden' : '';
+}
+function closeMenu() {
+  menuOpen = false;
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function toggleAcc(btn) {
+  const body = btn.nextElementSibling;
+  const was  = body.classList.contains('open');
+  document.querySelectorAll('.footer-acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.footer-acc-btn').forEach(b  => b.classList.remove('open'));
+  if (!was) { body.classList.add('open'); btn.classList.add('open'); }
+}
+function closeAcc() {
+  document.querySelectorAll('.footer-acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.footer-acc-btn').forEach(b  => b.classList.remove('open'));
+}
+function footerLayout() {
+  const d = window.innerWidth >= 1024;
+  const fd = document.getElementById('footerDesktop');
+  const fm = document.getElementById('footerMobile');
+  if (fd) fd.style.display = d ? 'grid' : 'none';
+  if (fm) fm.style.display = d ? 'none' : 'block';
+}
+footerLayout();
+window.addEventListener('resize', footerLayout);
+const obs = new IntersectionObserver((en) => {
+  en.forEach((e, i) => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 60); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

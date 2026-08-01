@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0B1628">
+<title>Collections – SIVA Gold & Silver</title>
+<meta name="description" content="Browse the full SIVA Gold &amp; Silver collection — 22K gold pendants, men's and ladies rings and earrings, handcrafted in Sankarankovil, Tamil Nadu.">
+<link rel="icon" href="assets/logo/favicon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/logo/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;900&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── Page-specific styles ── */
+.page-hero {
+  padding: calc(var(--nav-h) + 48px) 20px 48px;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 100%);
+  text-align: center;
+}
+.page-hero .section-title { color: var(--white); }
+.breadcrumb {
+  font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .2em;
+  color: var(--gold-dark); text-transform: uppercase; margin-bottom: 12px;
+}
+.breadcrumb a { color: var(--gold-dark); }
+.breadcrumb span { color: var(--text-light); }
+
+/* filter bar */
+.filter-bar {
+  background: var(--navy-mid);
+  border-bottom: 1px solid rgba(201,168,76,.12);
+  padding: 16px 20px;
+  display: flex; gap: 10px; overflow-x: auto;
+  scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  position: sticky; top: var(--nav-h); z-index: 100;
+}
+.filter-bar::-webkit-scrollbar { display: none; }
+.filter-btn {
+  flex-shrink: 0;
+  font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .16em;
+  color: var(--text-light); text-transform: uppercase;
+  background: rgba(201,168,76,.06); border: 1px solid rgba(201,168,76,.15);
+  padding: 8px 18px; cursor: pointer; transition: all .25s; white-space: nowrap;
+}
+.filter-btn.active, .filter-btn:active {
+  background: var(--gold); color: var(--navy);
+  border-color: var(--gold);
+}
+
+/* results info */
+.results-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 20px 0;
+  font-family: 'Cinzel', serif; font-size: .56rem; letter-spacing: .14em;
+  color: var(--gold-dark); text-transform: uppercase;
+}
+
+/* collections page grid */
+#collectionsPageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px; padding: 20px;
+  max-width: 1200px; margin: 0 auto;
+}
+
+/* pagination */
+.pagination {
+  display: flex; justify-content: center; align-items: center;
+  gap: 6px; padding: 40px 20px;
+  flex-wrap: wrap;
+}
+.page-btn {
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif; font-size: .62rem;
+  color: var(--text-light); border: 1px solid rgba(201,168,76,.2);
+  background: transparent; cursor: pointer; transition: all .2s;
+}
+.page-btn.active { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+.page-btn:hover  { border-color: var(--gold); color: var(--gold); }
+.page-btn.arrow  { font-size: 1rem; width: 44px; }
+.page-btn:disabled { opacity: .3; pointer-events: none; }
+
+/* no results */
+.no-results {
+  text-align: center; padding: 80px 20px;
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 1.2rem; color: var(--text-light);
+}
+
+/* ── dark card styling for this page (all screen sizes) ── */
+.product-card { background: var(--navy-light); border-color: rgba(201,168,76,.18); }
+.card-name    { color: var(--white); }
+.card-sub     { color: rgba(200,192,176,.7); }
+.card-no      { color: rgba(10,20,40,.55); }
+
+/* ─────────────────────────────────────
+   FILTER TRANSITION
+   Fade the grid out/in on category change.
+   Does NOT change card size, layout or spacing.
+───────────────────────────────────── */
+#collectionsPageGrid {
+  transition: opacity .22s ease;
+}
+#collectionsPageGrid.filtering {
+  opacity: 0;
+  pointer-events: none;   /* prevent clicks during fade */
+}
+
+/* Card entrance — each card fades up when rendered */
+.product-card {
+  animation: cardIn .3s ease both;
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media(min-width: 600px) {
+  #collectionsPageGrid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card-img-wrap { height: 210px; }
+}
+@media(min-width: 1024px) {
+  #collectionsPageGrid { grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 32px 60px; }
+  .results-bar { padding: 20px 60px 0; }
+  .filter-bar  { padding: 18px 60px; gap: 12px; }
+  .card-img-wrap { height: 220px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="nav-logo-img">
+    <span>SIVA<small>Gold &amp; Silver</small></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#hero">Home</a></li>
+    <li><a href="collections.html" style="color:var(--gold)">Collections</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html"       onclick="closeMenu()">Home</a>
+  <a href="collections.html" onclick="closeMenu()">Collections</a>
+  <a href="gallery.html"     onclick="closeMenu()">Gallery</a>
+  <a href="about.html" onclick="closeMenu()">About</a>
+  <a href="contact.html" onclick="closeMenu()">Contact</a>
+</div>
+
+<a href="https://wa.me/919944450084"
+   class="wa-fab"
+   target="_blank" rel="noopener"
+   aria-label="Chat with us on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+</a>
+
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; <span>Collections</span></div>
+  <span class="section-label">Our Craft</span>
+  <h1 class="section-title">Full <em>Collections</em></h1>
+  <div class="gold-rule"></div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" id="filterBar">
+  <!-- populated by JS from data.js categories -->
+</div>
+
+<!-- RESULTS COUNT -->
+<div class="results-bar">
+  <span id="resultsCount">Loading...</span>
+  <span id="pageInfo"></span>
+</div>
+
+<!-- GRID -->
+<div id="collectionsPageGrid"></div>
+
+<!-- PAGINATION -->
+<div class="pagination" id="pagination"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid-desktop" id="footerDesktop">
+    <div>
+      <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="footer-logo-img">
+      <div class="footer-brand-name">SIVA</div>
+      <div class="footer-brand-sub">Gold &amp; Silver · Molding Works</div>
+      <div class="footer-tagline-txt">We Design Your Desires</div>
+      <div class="footer-socials" style="justify-content:flex-start;margin-top:18px;">
+        <a class="social-btn" href="#" aria-label="Instagram">IG</a>
+        <a class="social-btn" href="#" aria-label="Facebook">FB</a>
+        <a class="social-btn" href="#" aria-label="Twitter">TW</a>
+        <a class="social-btn" href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Collections</div>
+      <ul class="footer-links">
+        <li><a href="collections.html">Pendants</a></li>
+        <li><a href="collections.html">Men's Rings</a></li>
+        <li><a href="collections.html">Ladies Rings</a></li>
+        <li><a href="collections.html">Earrings</a></li>
+        <li><a href="contact.html">Custom Orders</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">Nehru Street, Sankarankovil, TN</a></li>
+        <li><a href="tel:+919944450084">+91 99444 50084</a></li>
+        <li><a href="mailto:info@sivagoldsilver.com">info@sivagoldsilver.com</a></li>
+        <li><span>Mon–Sat: 10AM–8PM · Sun: 10AM–2PM</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-mobile-only" id="footerMobile">
+    <div class="footer-brand">
+      <img src="assets/logo/diamond.webp" alt="SIVA Logo" class="footer-logo-img-mobile">
+      <div class="footer-brand-name">SIVA</div>
+      <div class="footer-brand-sub">Gold &amp; Silver · Molding Works</div>
+      <div class="footer-tagline-txt">We Design Your Desires</div>
+      <div class="footer-socials">
+        <a class="social-btn" href="#" aria-label="Instagram">IG</a>
+        <a class="social-btn" href="#" aria-label="Facebook">FB</a>
+        <a class="social-btn" href="#" aria-label="Twitter">TW</a>
+        <a class="social-btn" href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div class="footer-accordion">
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Navigate<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Collections<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="collections.html">Pendants</a></li>
+            <li><a href="collections.html">Men's Rings</a></li>
+            <li><a href="collections.html">Ladies Rings</a></li>
+            <li><a href="collections.html">Earrings</a></li>
+            <li><a href="contact.html">Custom Orders</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-acc-item">
+        <button class="footer-acc-btn" onclick="toggleAcc(this)">Contact Info<span class="arr">▾</span></button>
+        <div class="footer-acc-body">
+          <ul class="footer-links">
+            <li><a href="https://maps.app.goo.gl/4U7xmLHqNgu89swYA" target="_blank" rel="noopener">Nehru Street, Sankarankovil, TN</a></li>
+            <li><a href="tel:+919944450084">+91 99444 50084</a></li>
+            <li><a href="mailto:info@sivagoldsilver.com">info@sivagoldsilver.com</a></li>
+            <li><span>Mon–Sat: 10AM–8PM · Sun: 10AM–2PM</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 SIVA Gold &amp; Silver Molding Works, Sankarankovil. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+  <div class="lightbox-content">
+    <img id="lightboxImg" alt="" class="lightbox-img">
+    <span id="lightboxFallback" class="lightbox-fallback"></span>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+/* ── nav ── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50), { passive: true });
+let menuOpen = false;
+function toggleMenu(btn) {
+  menuOpen = !menuOpen;
+  btn.classList.toggle('open', menuOpen);
+  document.getElementById('mobileDrawer').classList.toggle('open', menuOpen);
+  document.body.style.overflow = menuOpen ? 'hidden' : '';
+}
+function closeMenu() {
+  menuOpen = false;
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── state ── */
+const PAGE_SIZE   = 24;
+let currentCat    = 'all';
+let currentPage   = 1;
+let filteredItems = [];
+
+/* ── filter bar ── */
+function buildFilterBar() {
+  const bar = document.getElementById('filterBar');
+  SIVA_DATA.categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn' + (cat.id === 'all' ? ' active' : '');
+    btn.textContent = cat.label;
+    btn.onclick = () => setCategory(cat.id, btn);
+    bar.appendChild(btn);
+  });
+}
+
+function setCategory(catId, btn) {
+  currentCat  = catId;
+  currentPage = 1;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterAndRender();
+  /* only scroll on a real category change — not on first paint */
+  window.scrollTo({
+    top: document.getElementById('filterBar').offsetTop - 80,
+    behavior: 'smooth'
+  });
+}
+
+/* ── filter + render ──
+   Fades the grid out, swaps content, fades back in.
+   Only the opacity transition is added — no layout changes.
+────────────────────────────────────── */
+function filterAndRender() {
+  const all = SIVA_DATA.items;
+  filteredItems = currentCat === 'all'
+    ? all
+    : all.filter(i => i.category === currentCat);
+
+  const grid = document.getElementById('collectionsPageGrid');
+
+  /* fade out → render → fade in */
+  grid.classList.add('filtering');
+  setTimeout(() => {
+    renderPage();
+    renderPagination();
+    grid.classList.remove('filtering');
+  }, 220); /* matches CSS transition duration */
+}
+
+function renderPage() {
+  const grid  = document.getElementById('collectionsPageGrid');
+  const count = document.getElementById('resultsCount');
+  const info  = document.getElementById('pageInfo');
+  grid.innerHTML = '';
+
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const end   = Math.min(start + PAGE_SIZE, filteredItems.length);
+  const slice = filteredItems.slice(start, end);
+
+  count.textContent = `${filteredItems.length} items`;
+  info.textContent  = filteredItems.length > PAGE_SIZE
+    ? `Page ${currentPage} of ${Math.ceil(filteredItems.length / PAGE_SIZE)}`
+    : '';
+
+  if (slice.length === 0) {
+    grid.innerHTML = '<div class="no-results">No items found in this category.</div>';
+    return;
+  }
+
+  slice.forEach((item, i) => {
+    const no    = (item.no || '').trim();
+    const noTag = no ? `<span class="card-no">No. ${no}</span>` : '';
+    const badge = item.badge ? `<span class="card-badge">${item.badge}</span>` : '';
+    const card  = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="card-img-wrap">
+        ${noTag}
+        <img src="${item.img}" alt="${item.name}" class="card-img" loading="lazy"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-fallback">💍</div>
+        ${badge}
+      </div>
+      <div class="card-info">
+        <div>
+          <div class="card-name">${item.name}</div>
+          <div class="card-sub">${item.sub}</div>
+        </div>
+        <div class="card-weight">${item.weight}</div>
+      </div>`;
+    /* stagger entrance — each card animates slightly after the previous */
+    card.style.animationDelay = `${i * 35}ms`;
+    card.onclick = () => openLightbox(item.img, item.name);
+    grid.appendChild(card);
+  });
+}
+
+function renderPagination() {
+  const pg   = document.getElementById('pagination');
+  pg.innerHTML = '';
+  const total = Math.ceil(filteredItems.length / PAGE_SIZE);
+  if (total <= 1) return;
+
+  const prev = document.createElement('button');
+  prev.className = 'page-btn arrow'; prev.textContent = '‹';
+  prev.disabled  = currentPage === 1;
+  prev.onclick   = () => goToPage(currentPage - 1);
+  pg.appendChild(prev);
+
+  // show up to 5 page buttons
+  const start = Math.max(1, currentPage - 2);
+  const end   = Math.min(total, start + 4);
+  for (let p = start; p <= end; p++) {
+    const btn = document.createElement('button');
+    btn.className = 'page-btn' + (p === currentPage ? ' active' : '');
+    btn.textContent = p;
+    btn.onclick = () => goToPage(p);
+    pg.appendChild(btn);
+  }
+
+  const next = document.createElement('button');
+  next.className = 'page-btn arrow'; next.textContent = '›';
+  next.disabled  = currentPage === total;
+  next.onclick   = () => goToPage(currentPage + 1);
+  pg.appendChild(next);
+}
+
+function goToPage(p) {
+  currentPage = p;
+  renderPage();
+  renderPagination();
+  window.scrollTo({ top: document.getElementById('collectionsPageGrid').offsetTop - 100, behavior: 'smooth' });
+}
+
+/* ── lightbox ── */
+function openLightbox(imgSrc, alt) {
+  const img = document.getElementById('lightboxImg');
+  const fb  = document.getElementById('lightboxFallback');
+  img.src = imgSrc; img.alt = alt || '';
+  img.style.display = 'block'; fb.style.display = 'none';
+  img.onerror = () => { img.style.display = 'none'; fb.style.display = 'block'; fb.textContent = '💍'; };
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('lightboxImg').removeAttribute('src');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+/* ── footer layout ── */
+function footerLayout() {
+  const d  = window.innerWidth >= 1024;
+  const fd = document.getElementById('footerDesktop');
+  const fm = document.getElementById('footerMobile');
+  if (fd) fd.style.display = d ? 'grid' : 'none';
+  if (fm) fm.style.display = d ? 'none' : 'block';
+}
+footerLayout();
+window.addEventListener('resize', footerLayout);
+
+/* ── init ── */
+document.addEventListener('DOMContentLoaded', () => {
+  buildFilterBar();
+  filterAndRender();
+});
+
+/* ── footer accordion ── */
+function toggleAcc(btn) {
+  const body = btn.nextElementSibling;
+  const was  = body.classList.contains('open');
+  document.querySelectorAll('.footer-acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.footer-acc-btn').forEach(b  => b.classList.remove('open'));
+  if (!was) { body.classList.add('open'); btn.classList.add('open'); }
+}
+function closeAcc() {
+  document.querySelectorAll('.footer-acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.footer-acc-btn').forEach(b  => b.classList.remove('open'));
+}
+</script>
+</body>
+</html>

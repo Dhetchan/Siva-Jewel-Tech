@@ -389,10 +389,14 @@ section { padding: 60px 18px; }
   font-size: 3.2rem; user-select: none;
 }
 .jewel-emoji { font-size: 3.2rem; user-select: none; }
+/* Model number, sitting over the cream image panel.
+   Near-solid navy on a light chip so it stays legible against pale jewellery. */
 .card-no {
-  position: absolute; top: 8px; left: 10px; z-index: 1;
-  font-family: 'Cinzel', serif; font-size: .5rem;
-  letter-spacing: .14em; color: rgba(10,20,40,.55);
+  position: absolute; top: 6px; left: 6px; z-index: 1;
+  font-family: 'Cinzel', serif; font-size: .56rem; font-weight: 600;
+  letter-spacing: .1em; color: #0B1628;
+  background: rgba(255,255,255,.55);
+  padding: 2px 6px; border-radius: 2px;
 }
 .card-badge {
   position: absolute; top: 8px; right: 10px;

@@ -28,16 +28,57 @@
 .breadcrumb a { color: var(--gold-dark); }
 .breadcrumb span { color: var(--text-light); }
 
-/* filter bar */
-.filter-bar {
+/* ── sticky filter row: category chips + search ──
+   The wrapper is what sticks, so the search field travels with the chips.
+   On phones the two stack; from 900px up they share one line. */
+.filter-wrap {
   background: var(--navy-mid);
   border-bottom: 1px solid rgba(201,168,76,.12);
-  padding: 16px 20px;
+  position: sticky; top: var(--nav-h); z-index: 100;
+  padding: 14px 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.filter-bar {
   display: flex; gap: 10px; overflow-x: auto;
   scrollbar-width: none; -webkit-overflow-scrolling: touch;
-  position: sticky; top: var(--nav-h); z-index: 100;
 }
 .filter-bar::-webkit-scrollbar { display: none; }
+
+/* search field */
+.search-wrap { position: relative; flex-shrink: 0; }
+.search-input {
+  width: 100%;
+  background: rgba(11,22,40,.6);
+  border: 1px solid rgba(201,168,76,.22);
+  color: var(--white);
+  font-family: 'Lato', sans-serif; font-size: .82rem;
+  padding: 10px 38px 10px 38px;
+  outline: none; transition: border-color .25s;
+  -webkit-appearance: none; appearance: none;
+}
+.search-input::placeholder { color: rgba(200,192,176,.4); }
+.search-input:focus { border-color: var(--gold); }
+/* strip the browser's own clear button — we render our own */
+.search-input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.search-icon {
+  position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+  color: var(--gold-dark); font-size: .8rem; pointer-events: none;
+}
+.search-clear {
+  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  width: 30px; height: 30px; display: none;
+  align-items: center; justify-content: center;
+  color: var(--text-light); font-size: .9rem; cursor: pointer;
+  background: none; border: none;
+}
+.search-clear.show { display: flex; }
+.search-clear:hover { color: var(--gold); }
+
+@media(min-width:900px){
+  .filter-wrap { flex-direction: row; align-items: center; gap: 20px; }
+  .filter-bar  { flex: 1; min-width: 0; }
+  .search-wrap { width: 300px; }
+}
 .filter-btn {
   flex-shrink: 0;
   font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .16em;
@@ -95,7 +136,7 @@
 .product-card { background: var(--navy-light); border-color: rgba(201,168,76,.18); }
 .card-name    { color: var(--white); }
 .card-sub     { color: rgba(200,192,176,.7); }
-.card-no      { color: rgba(10,20,40,.55); }
+/* .card-no is styled in style.css so the homepage cards match */
 
 /* ─────────────────────────────────────
    FILTER TRANSITION
@@ -176,9 +217,19 @@
   <div class="gold-rule"></div>
 </div>
 
-<!-- FILTER BAR -->
-<div class="filter-bar" id="filterBar">
-  <!-- populated by JS from data.js categories -->
+<!-- FILTER BAR + SEARCH -->
+<div class="filter-wrap">
+  <div class="filter-bar" id="filterBar">
+    <!-- populated by JS from data.js categories -->
+  </div>
+  <div class="search-wrap">
+    <span class="search-icon" aria-hidden="true">🔍</span>
+    <input class="search-input" id="searchBox" type="search"
+           placeholder="Search by name or number…"
+           aria-label="Search collections by design name or model number"
+           autocomplete="off">
+    <button class="search-clear" id="searchClear" type="button" aria-label="Clear search">✕</button>
+  </div>
 </div>
 
 <!-- RESULTS COUNT -->
@@ -324,6 +375,7 @@ function closeMenu() {
 const PAGE_SIZE   = 24;
 let currentCat    = 'all';
 let currentPage   = 1;
+let searchTerm    = '';
 let filteredItems = [];
 
 /* ── filter bar ── */
@@ -346,9 +398,53 @@ function setCategory(catId, btn) {
   filterAndRender();
   /* only scroll on a real category change — not on first paint */
   window.scrollTo({
-    top: document.getElementById('filterBar').offsetTop - 80,
+    top: document.querySelector('.filter-wrap').offsetTop - 80,
     behavior: 'smooth'
   });
+}
+
+/* ── search ──
+   Matches the design name and the model number. Category and search
+   stack, so "Pendants" + "vinayagar" narrows within the category.
+────────────────────────────────────── */
+function initSearch() {
+  const box   = document.getElementById('searchBox');
+  const clear = document.getElementById('searchClear');
+  let timer;
+
+  const apply = () => {
+    searchTerm  = box.value.trim().toLowerCase();
+    currentPage = 1;
+    clear.classList.toggle('show', box.value.length > 0);
+    filterAndRender();
+  };
+
+  /* debounce so a fast typist doesn't re-render on every keystroke */
+  box.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(apply, 160);
+  });
+
+  clear.addEventListener('click', () => {
+    box.value = '';
+    apply();
+    box.focus();
+  });
+
+  /* Esc clears, Enter dismisses the mobile keyboard */
+  box.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { box.value = ''; apply(); }
+    if (e.key === 'Enter')  { e.preventDefault(); clearTimeout(timer); apply(); box.blur(); }
+  });
+}
+
+function matchesSearch(item) {
+  if (!searchTerm) return true;
+  const no = (item.no || '').trim().toLowerCase();
+  return item.name.toLowerCase().includes(searchTerm)
+      || no.includes(searchTerm)
+      /* so "1" also finds "001" */
+      || (/^\d+$/.test(searchTerm) && /^\d+$/.test(no) && parseInt(no, 10) === parseInt(searchTerm, 10));
 }
 
 /* ── filter + render ──
@@ -357,9 +453,9 @@ function setCategory(catId, btn) {
 ────────────────────────────────────── */
 function filterAndRender() {
   const all = SIVA_DATA.items;
-  filteredItems = currentCat === 'all'
-    ? all
-    : all.filter(i => i.category === currentCat);
+  filteredItems = all
+    .filter(i => currentCat === 'all' || i.category === currentCat)
+    .filter(matchesSearch);
 
   const grid = document.getElementById('collectionsPageGrid');
 
@@ -382,13 +478,21 @@ function renderPage() {
   const end   = Math.min(start + PAGE_SIZE, filteredItems.length);
   const slice = filteredItems.slice(start, end);
 
-  count.textContent = `${filteredItems.length} items`;
-  info.textContent  = filteredItems.length > PAGE_SIZE
-    ? `Page ${currentPage} of ${Math.ceil(filteredItems.length / PAGE_SIZE)}`
+  const n = filteredItems.length;
+  count.textContent = searchTerm
+    ? `${n} ${n === 1 ? 'match' : 'matches'} for "${searchTerm}"`
+    : `${n} items`;
+  info.textContent  = n > PAGE_SIZE
+    ? `Page ${currentPage} of ${Math.ceil(n / PAGE_SIZE)}`
     : '';
 
   if (slice.length === 0) {
-    grid.innerHTML = '<div class="no-results">No items found in this category.</div>';
+    grid.innerHTML = searchTerm
+      ? `<div class="no-results">Nothing matches “${searchTerm}”.<br>
+           <button class="filter-btn" style="margin-top:18px"
+             onclick="document.getElementById('searchClear').click()">Clear search</button>
+         </div>`
+      : '<div class="no-results">No items found in this category.</div>';
     return;
   }
 
@@ -488,6 +592,7 @@ window.addEventListener('resize', footerLayout);
 /* ── init ── */
 document.addEventListener('DOMContentLoaded', () => {
   buildFilterBar();
+  initSearch();
   filterAndRender();
 });
 
